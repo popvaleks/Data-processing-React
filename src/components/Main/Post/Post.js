@@ -33,7 +33,7 @@ function Post({ post }) {
       <div className="post__content-container">
         <a href={post.link} target="_blank" rel="noopener noreferrer"
           className="post__main-link">
-          {decodeitText(post.title)}
+          {decodeitText(post.title)} + {post.creation_date}
         </a>
       </div>
     </div>

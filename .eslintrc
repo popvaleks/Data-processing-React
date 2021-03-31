@@ -14,7 +14,6 @@
     "operator-linebreak": "off",
     "indent": ["error", 2],
     "react/prop-types": "off"
-    // "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   },
   "extends": ["eslint:recommended","plugin:react/recommended", "google"]  
 }

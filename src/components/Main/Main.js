@@ -19,9 +19,13 @@ function Main() {
   const [throttleViolation, setThrottleViolation] = useState(false);
 
   // обработчик клика по кнопке, сортировка списка
-  const swapSort = () => {
+  const handleSwapSort = () => {
+    setPostList(
+      _(postList)
+        .orderBy(p => p.creation_date, sortByDesc ? 'asc' : 'desc')
+        .value(),
+    );
     sortByDesc ? setSortByDesc(false) : setSortByDesc(true);
-    setLoading(true);
   };
 
   // обработчик списка постов
@@ -58,18 +62,17 @@ function Main() {
         setServerError(true);
         setLoading(false);
       });
-  }, [postList, sortByDesc]);
+  }, [postList]);
 
   useEffect(() => {
     handleGetPosts();
-    // eslint-disable-next-line no-sparse-arrays
-  }, [, sortByDesc]);
+  }, []);
 
   return (
     <div className="main__wrapper">
       {!loadind && postList.length !== 0 && !serverError &&
-        <button onClick={swapSort} className="btn main__button">
-          {sortByDesc ? 'Fresh first' : 'Old first'}
+        <button onClick={handleSwapSort} className="btn main__button">
+          {sortByDesc ? 'New first' : 'Old first'}
         </button>
       }
       {loadind ?
